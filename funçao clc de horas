@@ -1,0 +1,35 @@
+CREATE OR REPLACE FUNCTION ANDERSONLARIANO10_SCHEMA_QNAZK.FNC_CALC_HH
+(
+  P_DTINI DATE, 
+  P_DTFIM DATE
+)
+RETURN VARCHAR2 
+AS
+  -- Variáveis que vão receber os cálculos baseados na sua fórmula
+  V_HORAS    NUMBER;
+  V_MINUTOS  NUMBER;
+  V_SEGUNDOS NUMBER;
+  
+  -- Variável para juntar tudo no formato texto
+  V_RESULTADO VARCHAR2(50); 
+BEGIN
+
+  -- 1. Calcula a diferença em horas
+  V_HORAS    := ((P_DTFIM - P_DTINI) * 24);
+  
+  -- 2. Calcula a diferença em minutos
+  V_MINUTOS  := (MOD(((P_DTFIM - P_DTINI) * 24 * 60), 60));
+  
+  -- 3. Calcula a diferença em segundos
+  V_SEGUNDOS := (MOD(((P_DTFIM - P_DTINI) * 24 * 60 * 60), 60));
+
+  -- 4. Junta tudo diretamente com o operador || ':' || sem formatação adicional
+  V_RESULTADO := V_HORAS || ':' || 
+  V_MINUTOS || ':' || 
+  V_SEGUNDOS;
+
+  /*RETORNA O RESULTADO FORMATADO EM TEXTO*/
+  RETURN V_RESULTADO;
+
+END;
+/
