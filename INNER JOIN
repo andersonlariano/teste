@@ -1,0 +1,13 @@
+INNER JOIN
+
+SELECT a.nome AS aluno, t.nome_turma
+FROM aluno a
+INNER JOIN turma t ON a.turma = t.codigo;
+
+LEFT JOIN
+
+SELECT t.codigo, t.nome_turma, a.nome 
+FROM turma t
+LEFT JOIN aluno a ON t.codigo = a.turma;
+
+RIGHT JOIN
