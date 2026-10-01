@@ -1,23 +1,26 @@
+1
 SELECT a.nome AS ALUNO, t.nome_turma AS TURMA
 FROM ALUNO a
 INNER JOIN TURMA t ON a.turma = t.codigo
-
+2
 SELECT t.nome_turma AS TURMA, COUNT(a.nome) AS TOTAL_ALUNOS
 FROM TURMA t
 LEFT JOIN ALUNO a ON t.codigo = a.turma
 GROUP BY t.codigo, t.nome_turma
 ORDER BY TOTAL_ALUNOS DESC
-
+3
 SELECT a.nome AS ALUNO, a.idade AS IDADE, t.nome_turma AS TURMA
 FROM ALUNO a
 INNER JOIN TURMA t ON a.turma = t.codigo
 WHERE a.idade > 15
 ORDER BY a.idade DESC, a.nome
+5
+SELECT a.nome AS ALUNO, t.nome_turma AS TURMA
+FROM ALUNO a
+INNER JOIN TURMA t ON a.turma = t.codigo
 
-
-
-SELECT d.codigo_disciplina, d.descricao AS DISCIPLINA_SEM_PROFESSOR
-FROM DISCIPLINA d
-LEFT JOIN TURMA_DISCIPLINA td ON d.codigo_disciplina = td.codigo_disciplina
-WHERE td.codigo_disciplina IS NULL
-ORDER BY d.descricao
+4
+SELECT p.nome AS PROFESSOR, d.descricao AS DISCIPLINA
+FROM PROFESSOR p
+INNER JOIN TURMA_DISCIPLINA td ON p.codigo = td.codigo_professor
+INNER JOIN DISCIPLINA d ON td.codigo_disciplina = d.codigo_disciplina
